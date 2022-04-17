@@ -10,7 +10,7 @@ class Ostos:
 
     def muuta_lukumaaraa(self, muutos: int):
         self._lukumaara += muutos
-        if self._lukumaara<0:
+        if self._lukumaara < 0:
             self._lukumaara = 0
 
     def lukumaara(self):
