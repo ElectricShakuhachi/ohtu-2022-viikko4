@@ -9,7 +9,7 @@ class Ostoskori:
         return sum([ostos.lukumaara() for ostos in self.ostokset.values()])
 
     def hinta(self):
-        return 0
+        return sum([ostos.hinta() for ostos in self.ostokset.values()])
 
     def lisaa_tuote(self, lisattava: Tuote):
         if lisattava.nimi not in self.ostokset:
