@@ -16,24 +16,29 @@ class TestOstoskori(unittest.TestCase):
         self.assertEqual(self.kori.tavaroita_korissa(), 1)
 
     def test_yhden_tuotteen_lisaamisen_jalkeen_ostoskorin_hinta_sama_kuin_tuotteen_hinta(self):
-        self.kori.lisaa_tuote(Tuote("Omena", 2))
-        self.assertEqual(self.kori.hinta(), 2)
+        self.kori.lisaa_tuote(Tuote("Karkki", 3))
+        self.assertEqual(self.kori.hinta(), 3)
 
     def test_kahden_eri_tuotteen_lisaamisen_jalkeen_korissa_2_tavaraa(self):
-        self.kori.lisaa_tuote(Tuote("Omena", 2))
+        self.kori.lisaa_tuote(Tuote("Maito", 2))
         self.kori.lisaa_tuote(Tuote("Banaani", 1))
         self.assertEqual(self.kori.tavaroita_korissa(), 2)
 
     def test_kahden_eri_tuotteen_lisaamisen_jalkeen_hinta_tuotteiden_hintojen_summa(self):
-        self.kori.lisaa_tuote(Tuote("Omena", 2))
-        self.kori.lisaa_tuote(Tuote("Banaani", 1))
-        self.assertEqual(self.kori.hinta(), 3)
+        self.kori.lisaa_tuote(Tuote("Laukku", 20))
+        self.kori.lisaa_tuote(Tuote("Keksi", 1))
+        self.assertEqual(self.kori.hinta(), 21)
 
     def test_kahden_saman_tuotteen_lisaamisen_jalkeen_hinta_kaksi_kertaa_tuotteen_hinta(self):
-        self.kori.lisaa_tuote(Tuote("Omena", 2))
-        self.kori.lisaa_tuote(Tuote("Omena", 2))
+        self.kori.lisaa_tuote(Tuote("Basilika", 2))
+        self.kori.lisaa_tuote(Tuote("Basilika", 2))
         self.assertEqual(self.kori.hinta(), 4)
 
     def test_yhden_tuotteen_lisaamisen_jalkeen_ostoskorissa_yksi_ostos(self):
-        self.kori.lisaa_tuote(Tuote("Omena", 2))
+        self.kori.lisaa_tuote(Tuote("Sipuli", 2))
         self.assertEqual(len(self.kori.ostokset()), 1)
+
+    def test_yhden_tuotteen_lisaamisen_jalkeen_ostoskorissa_ostos_jonka_nimi_sama_ja_lukumaara_yksi(self):
+        self.kori.lisaa_tuote(Tuote("Kinkku", 4))
+        self.assertEqual(self.kori.ostokset()["Kinkku"].tuotteen_nimi(), "Kinkku")
+        self.assertEqual(self.kori.ostokset()["Kinkku"].lukumaara(), 1)
